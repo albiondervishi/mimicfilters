@@ -1,10 +1,12 @@
 # Vincent Major
 # October 21 2015
-# Generating two lists of strings to be used to include and exclude patients by their
+# Using two lists of strings to to include and exclude patients by their
 # string-based admission diagnosis.
 
-a_string_based_admission = function (ADMISS)
+c_string_based_admission = function (ADMISS)
 {
+  # takes a data.frame ADMISS rather than just the component string.
+  # Define list of strings to match on for both inclusion and exclusion
   
   in_list = c('PNEUMONIA','PNA','SEPSIS','FEVER','ALTERED MENTAL STATUS','HYPOTENSION','ACUTE RENAL FAILURE',
               'RESPIRATORY FAILURE','PANCREATITIS','LIVER FAILURE','SHORTNESS OF BREATH','CELLULITIS',
@@ -35,11 +37,16 @@ a_string_based_admission = function (ADMISS)
               'RUPTURED AAA','STROKE-TRANSIENT ISCHEMIC ATTACK','TYLENOL OD'
   )
   
+  # Patients that fail to have a diagnosis in either inc_list of ex_list will be MISSED!
   
   HADM = ADMISS$HADM_ID
   diagn = ADMISS$DIAGNOSIS
   
+  # Define a bunch of characters to separate on - chosen by manual inspection.
+  # R/O etc included to narrow down the string from 'R/O sepsis' to just 'sepsis' which can be captured.
   sep_char = c(';',',','?','S/P','R/O','W/','\\','/','-')
+  
+  # Splitting the string into its base components by splitting on each of sep_char repetitively.
   for(k in 1:length(sep_char))
     {
       yes = FALSE
@@ -59,7 +66,6 @@ a_string_based_admission = function (ADMISS)
           j = 1
           while(j <= q)
           {
-            if(yes){print('adding another row')}
             new_HADM = rbind(new_HADM, HADM[i])
             new_diagn = rbind(new_diagn, temp_list[j])
             j = j+1
@@ -74,12 +80,15 @@ a_string_based_admission = function (ADMISS)
   
   
   admiss_HADM_diag = data.frame(HADM_ID = new_HADM, DIAGNOSIS = new_diagn)
+  
   # perfect! We had 7146 patients --> 8837 splitting by ';' --> 9057 splitting by ','. 
   # Still have 27 cases of '/' but in mixed context so will ignore.
+  
   admiss_HADM_diag = admiss_HADM_diag[admiss_HADM_diag$DIAGNOSIS != '',]
   admiss_HADM_diag = admiss_HADM_diag[admiss_HADM_diag$DIAGNOSIS != ' ',]
   new_HADM = admiss_HADM_diag$HADM_ID
   new_diagn = admiss_HADM_diag$DIAGNOSIS
+  
   # Now I need to test against the inclusion and exclusion lists.
   
   in_matrix = sapply(in_list, grepl, new_diagn, ignore.case=TRUE) #could use fixed = TRUE here but doesn't matter in this instance
@@ -91,43 +100,21 @@ a_string_based_admission = function (ADMISS)
   ab = rbind(a,b) # Included but not excluded --- INCLUDED
   c = apply(ab, 2, function(x) all(x))
   
-  # print(sum(c))
-  
-  # abc = rbind(b, !c) # not excluded (b) but not included+NOTexcluded --- MISSED!
-  # d = apply(abc, 2, function(x) all(x))
-  
-  # print(sum(d))
-  # print(sum(!b))
   
   anotb = rbind(a,!b) # Included but also excluded --- EXCLUDED
   e = apply(anotb, 2, function(x) all(x))
-  # print(sum(e))
   
   include = data.frame(HADM_ID = new_HADM[c], DIAGNOSIS = new_diagn[c])
   freq_include = count(include$DIAGNOSIS)
   x = unique(include$HADM_ID)
   ADMISS_include = ADMISS[which(is.finite(match(ADMISS$HADM_ID, x))),c('HADM_ID','DIAGNOSIS')]
-
-  
-#   missed = data.frame(HADM_ID = new_HADM[d], DIAGNOSIS = new_diagn[d])
-#   # every diagnosis (split apart using ; and , separators) for the
-#   # match(y,x) # length(y) long -- removing occurances where a HADM_ID already exists in include
-#   missed = missed[-which(is.finite(match(new_HADM[d],x))),]
-#   y = unique(missed$HADM_ID)
-#   freq_missed = count(missed$DIAGNOSIS)
-#   ADMISS_missed = ADMISS[which(is.finite(match(ADMISS$HADM_ID, y))),c('HADM_ID','DIAGNOSIS')]
   
   excluded = data.frame(HADM_ID = new_HADM[e], DIAGNOSIS = new_diagn[e]) #!b to include not in but excluded
   freq_exclude = count(excluded$DIAGNOSIS)
   z = unique(excluded$HADM_ID)
   ADMISS_exclude = ADMISS[which(is.finite(match(ADMISS$HADM_ID, z))),c('HADM_ID','DIAGNOSIS')]
   
-#   cache('freq_missed')
-#   cache('freq_exclude')
-#   cache('freq_include')
-  
   included_HADM_ID = unique(include$HADM_ID)
-  # missed_HADM_ID = unique(missed$HADM_ID)
   excluded_HADM_ID = unique(excluded$HADM_ID)
   print(length(included_HADM_ID))
   if(length(intersect(included_HADM_ID, excluded_HADM_ID)) != 0)
@@ -138,25 +125,7 @@ a_string_based_admission = function (ADMISS)
   
   missed_HADM_ID = setdiff(ADMISS$HADM_ID, included_HADM_ID)
   missed_HADM_ID = setdiff(missed_HADM_ID, excluded_HADM_ID)
-  # cache('include')
-  # cache('inc_HADM_ID')
-  # a = eligible to be included
-  # b = are not actively excluded
-  # !b = are actively included
-  # c = are INCLUDED
-  # d = are missed (not excluded but not included)
-  # e = included and excluded
-#   q=e
-#   group = data.frame(HADM_ID = new_HADM[q], DIAGNOSIS = new_diagn[q])
-#   group_HADM_ID = unique(group$HADM_ID)
-#   print(length(group_HADM_ID))
-#   
-#   start_HADM = ADMISS$HADM_ID
-#   start_diagn = ADMISS$DIAGNOSIS
-#   inc_diag = start_diagn[match(inc_HADM_ID,start_HADM)]
-#   exc_diag = start_diagn[-match(inc_HADM_ID,start_HADM)]
-#   z = count(inc_diag)
-#   zz = count(exc_diag)
+  
   return(list(included_HADM_ID,missed_HADM_ID,excluded_HADM_ID))
 }
 
