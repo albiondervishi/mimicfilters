@@ -1,7 +1,14 @@
 # Vincent Major
-# November 2 2015
-# Function to take in the raw NOTE_HADM_from_file, a data.frame of HADM_ID and TEXT fields,
-# use a regex process to extract the Past Medical History Section from the raw Discharge note.
+# April 10 2016
+# A function to take in the raw discharge note in a data.frame subset of the raw NOTE table with CATEGORY == "Discharge". At least the input data.frame must have HADM_ID and TEXT fields. A regex process is used to extract the Past Medical History Section from the raw Discharge note. Unfortunately, instances of 'Prior Medical History' as well as 'HISTORY OF PRESENT ILLNESS' also occur and are included.
+
+# Usage,
+#   d_past_medical_history_regex_raw_note = function(NOTE_HADM_from_file)
+# Where,
+#   NOTE_HADM_from_file is a data.frame subset of the raw NOTE table with every row $CATEGORY == "Discharge".
+
+# Output is a data.frame of HADM_ID and Past Medical History snippets that can subsequently be regexed for strings of interest.
+
 
 d_past_medical_history_regex_raw_note = function(NOTE_HADM_from_file)
 {

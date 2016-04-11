@@ -1,7 +1,13 @@
-# Testing EF extraction regular expression code
 # Vincent Major
-# 24 September 2015
-#
+# April 10 2016
+# A script that given the raw, free-text echocardiogram report will search first for numeric instances of LVEF = X% and then at failure to do so revert to searching for cases of severe, moderate or mild reduced LV systolic function/hypokinesis or normal LVEF function.
+
+# Usage:
+  # b_ef_regex_from_raw_note = function (temp_str)
+# Where,
+#   temp_str is the large string containing the raw echocardiogram note with all grammar, newlines etc included.
+
+# Output is a vector of numeric EF values recovered (which I suggest is subsequently min and maxed for the extremes) OR in the case of text based severe/moderate/mild searches, the values represent the extremes of the clinically defined ranges.
 
 b_ef_regex_from_raw_note = function (temp_str)
 {

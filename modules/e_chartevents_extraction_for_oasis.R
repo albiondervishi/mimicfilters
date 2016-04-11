@@ -1,8 +1,16 @@
 # Vincent Major
-# function to take in each separate OASIS parameter from CHARTEVENTS and extract the extreme and median values 
-# of the first 24 hours
+# April 10 2016
+# A function to take in each separate OASIS parameter from a data.frame subset of CHARTEVENTS and extract the extreme and median values, over the first 24 hours, for latter use in e_chart_parameters_to_oasis_scores. Takes as input, the subsetted CHARTEVENTS table, the variable to inspect, and the ICUIN table for the time of ICU admission.
 
-# Takes in the subsetted chartevents table, the variable to inspect, and the ICUIN table for the time in 
+# Usage,
+#   e_CHARTEVENTS_OASIS_extraction = function(CHARTEVENTS, variable, ICUIN)
+# Where,
+#   CHARTEVENTS is a data.frame subset of raw CHARTEVENTS of the patients of interest for only the parameter of interest (for the sake of memory).
+#   variable is a string of the OASIS variable to inspect. Must be one of c('FiO2', 'HR', 'GCS', 'MAP', 'RR', 'Temp').
+
+# Output is a data.frame of OASIS parameter values, min, max and median that can then be redirected into e_chart_parameters_to_oasis_scores
+
+
 e_CHARTEVENTS_OASIS_extraction = function(CHARTEVENTS, variable, ICUIN)
 {
   output = {}

@@ -1,10 +1,20 @@
 # Vincent Major
-# October 14 2015
-# Function to take in EF min and max and bin them into
-# severe    (3)   EF < 30
-# moderate  (2)   30 <= EF << 40
-# mild      (1)   40 <= EF <= 50
-# normal    (0)   50 < EF
+# April 10 2016
+# A function to take in numeric values of LVEF min and max and bin them into the clinically defined ranges
+#   severe (3) EF < 30
+#   moderate (2) 30 <= EF << 40
+#   mild (1) 40 <= EF <= 50
+#   normal (0) 50 < EF
+
+# Usage:
+#   b_ef_binning_3210 = function(EFmin, EFmax)
+
+# Where,
+#   EFmin is the minimum EF obtained from the b_ef_regex_from_raw_note function
+#   EFmax is the maximum EF obtained from the b_ef_regex_from_raw_note function
+
+# Output is the integer 0, 1, 2, or 3 representing normal EF, mild, moderate or severely depressed LVEF/hypokinesis.
+
 
 b_ef_binning_3210 = function(EFmin, EFmax)
 {

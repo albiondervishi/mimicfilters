@@ -1,7 +1,13 @@
 # Vincent Major
-# December 3 2015
-# function to take in raw OASIS parameter values, as a table, and translate into scores based on the paper
-# Johnson et al. 2013 A new severity of Illness score
+# April 10 2016
+# A function to take in raw OASIS parameter values, as a table, and translate into scores based on the paper, Johnson et al. 2013, A New Severity of Illness Scale Using a Subset of Acute Physiology and Chronic Health Evaluation Data Elements Shows Comparable Predictive Accuracy.
+
+# Usage,
+#   e_chart_parameters_to_oasis_scores = function(OASIS_table)
+# Where,
+#   OASIS_table is a table of the OASIS score parameters, at least min and max. Fields that are required are age, GCS, HRmin, HRmax, MAPmin, MAPmax, RRmin, RRmax, Tmin, Tmax, urine, FiO2min, and elective_flag.
+
+# Output is a table of scores based on the thresholds from the Johnson 2013 paper.
 
 
 e_chart_parameters_to_oasis_scores = function(OASIS_table)

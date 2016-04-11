@@ -1,7 +1,20 @@
 # Vincent Major
-# November 13th 2015
-# Script to check if data frames of preprocessed csv files exist, if TRUE - do nothing
-# if FALSE --> load in the data and complete any other preprocessing steps. 
+# April 10 2016
+# A script that sums the fluids in, out, and urine out to a patient over a specified timerange with options for the minimum volume to include and whether or not to normalize if the time interval that fluids in are recorded is less that the specified timerange.
+
+# Usage,
+#   f_fluids_administered_summation = function(temp_INS, temp_OUTS, temp_urine, temp_ICUSTAY_INTIME, timerange, min_volume_to_include, normalize)
+
+# Where, temp_INS - table of INS for one HADM_ID to include all of
+#   temp_OUTS - table of OUTS for one HADM_ID to include all of
+#   temp_urine - table of urine OUTS for one HADM_ID to include all of
+#   temp_ICUSTAY_INTIME - ICUSTAY$INTIME of the individual, the start time that timerange extends
+#   timerange - the time interval to summ fluids over.
+#   min_volume_to_include - If a minimum fluid volume is desired, in mL. For example large intraveneous fluids will all be > 250 mL
+#   normalize - TRUE/FALSE value to determine whether or not to normalize the fluids over time for instances where fluids are given for times shorter than timerange.
+
+# Output is the summed fluids in, out and urine out over the timerange respectively as a list i.e. list(Vol_in, Vol_out, urine_out)
+
 
 f_fluids_administered_summation = function(temp_INS, temp_OUTS, temp_urine, temp_ICUSTAY_INTIME, timerange, min_volume_to_include, normalize){
   # temp_INS - table of INS for one HADM_ID to include all of

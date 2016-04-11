@@ -1,7 +1,14 @@
 # Vincent Major
-# November 13th 2015
-# Script to perform system commands to preprocess the DIAGNOSIS_DATA_TABLE.csv by 
-# one ICD-9 codes
+# April 10 2016
+# Script to preprocess the DIAGNOSIS_DATA_TABLE.csv by one vector of ICD-9 codes
+
+# Usage:
+#   a_diagnosis_groups_by_icd9_list = function(icd9.codes.vector, path.raw){
+# Where,
+#   icd.codes.vector is a data.frame or vector of the ICD-9 codes in either format e.g 123.45 or 12345. Leading zeros will be replaced if nchar < 3 e.g. 1 --> 001 and the function works in a hierarchical manner so that a code of 123 will include any code within the range 123.01-123.99.
+#   path.raw is the subdirectory that contains the raw DIAGNOSIS_DATA_TABLE.csv file, e.g. "raw"
+
+# Output is the DIAGNOSIS table subsetted to the rows that include ICD-9 codes within the given list. The SUBJECT_ID or HADM_ID can then easily be extracted from the output data.frame.
 
 a_diagnosis_groups_by_icd9_list = function(icd9.codes.vector, path.raw){
   # a function that takes one list of icd9 codes and the path to the raw data directory!
