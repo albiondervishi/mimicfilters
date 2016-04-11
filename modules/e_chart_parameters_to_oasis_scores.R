@@ -1,9 +1,10 @@
 # Vincent Major
 # December 3 2015
-# function to take in raw OASIS values and translate into scores
+# function to take in raw OASIS parameter values, as a table, and translate into scores based on the paper
+# Johnson et al. 2013 A new severity of Illness score
 
 
-d_OASIS_values_to_scores = function(OASIS_table)
+e_chart_parameters_to_oasis_scores = function(OASIS_table)
 {
   OASIS_scores = data.frame(HADM_ID = OASIS_table$HADM_ID)
   # Tin - time before ICU - remembering to convert to hours!

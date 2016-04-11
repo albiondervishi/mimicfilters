@@ -3,7 +3,7 @@
 # 24 September 2015
 #
 
-b_ef_from_raw_note = function (temp_str)
+b_ef_regex_from_raw_note = function (temp_str)
 {
   x=list()
   xx=list()
@@ -72,17 +72,17 @@ b_ef_from_raw_note = function (temp_str)
        }
        else if(any(sapply(moderate_list, grepl, temp_str[i], ignore.case = T)))
        {
-         xxx[[i]] = c(30, 44)
+         xxx[[i]] = c(31, 39)
          next
        }
        else if(any(sapply(mild_list, grepl, temp_str[i], ignore.case = T)))
        {
-         xxx[[i]] = c(45, 54)
+         xxx[[i]] = c(41, 49)
          next
        }
        else if(any(sapply(normal_list, grepl, temp_str[i], ignore.case = T)))
        {
-         xxx[[i]] = c(55, 55)
+         xxx[[i]] = c(51, 99)
          next
        }
        else

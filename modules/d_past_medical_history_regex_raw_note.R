@@ -1,8 +1,9 @@
 # Vincent Major
 # November 2 2015
-# Exploring a regex process for extracting the Past Medical History from NOTE_HADM_from_file
+# Function to take in the raw NOTE_HADM_from_file, a data.frame of HADM_ID and TEXT fields,
+# use a regex process to extract the Past Medical History Section from the raw Discharge note.
 
-b_PMH_regex = function(NOTE_HADM_from_file)
+d_past_medical_history_regex_raw_note = function(NOTE_HADM_from_file)
 {
   temp_HID = {}
   temp_str = {}

@@ -1,10 +1,10 @@
 # Vincent Major
-# function to take in each separate variables from CHARTEVENTS and extract the extreme values of the first
-# 24 hours
+# function to take in each separate OASIS parameter from CHARTEVENTS and extract the extreme and median values 
+# of the first 24 hours
 
-c_CHARTEVENTS_OASIS_extraction = function(CHARTEVENTS, variable, ICUIN)
+# Takes in the subsetted chartevents table, the variable to inspect, and the ICUIN table for the time in 
+e_CHARTEVENTS_OASIS_extraction = function(CHARTEVENTS, variable, ICUIN)
 {
-  
   output = {}
   if(variable == 'GCS')
   {
