@@ -1,0 +1,25 @@
+Package: mimicfilters
+Type: Package
+Title: Filtering and Quantification Functions for MIMIC-III Analyses
+Description: Provides a computation framework for analyses using the MIMIC-III
+    database. Includes several tested and validated functions for inclusion,
+    stratification, and quantification of clinical cohorts of interest.
+Version: 0.0.0.9000
+Date: 2016-10-20
+Authors@R: c(
+    person("Vincent", "Major", email = "vincentmajor@nyumc.org", role = c("aut", "cre")),
+    person("Monique", "Tanna", role = "aut"),
+    person("Simon", "Jones", role = "aut"),
+    person("Yin", "Aphinyanaphongs", role = "aut"))
+Maintainer: Vincent Major <vincentmajor@nyumc.org>
+License: CC0
+LazyData: TRUE
+URL: https://github.com/vincentmajor/MIMIC-ICU-filter-modules
+BugReports: https://github.com/vincentmajor/MIMIC-ICU-filter-modules/issues
+RoxygenNote: 5.0.1
+Depends: dplyr,
+    stringr
+Suggests: knitr,
+    rmarkdown,
+    testthat
+VignetteBuilder: knitr
