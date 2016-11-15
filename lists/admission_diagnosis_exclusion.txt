@@ -1,0 +1,43 @@
+acute leukemia
+acute subdural hematoma
+blunt trauma
+bowel obstruction
+bright red blood per rectum
+cerebrovascular accident
+chf
+chf exacerbation
+congestive heart failure
+fall
+femur fracture
+gastrointestinal bleed
+gi bleed
+head bleed
+heart failure
+hip fracture
+intracranial hemorrhage
+intraparenchymal hemorrhage
+lower gi bleed
+overdose
+pulmonary embolis
+pulmonary embolus
+ruptured aaa
+s/p fall
+s/p motor vehicle accident
+stemi
+stroke
+stroke-transient ischemic attack
+stroke/tia
+subarachnoid hematoma
+subarachnoid hemorrhage
+subdural hematoma
+subdural hemorrhage
+syncope
+tia
+transient ischemic attack
+transient ischemic attack (tia)
+trauma
+tylenol od
+tylenol overdose
+upper gastrointestinal bleed
+upper gi bleed
+variceal bleed

@@ -1,0 +1,81 @@
+acute renal failure
+adult respiratory distress syndrome
+altered mental status
+ards
+arf
+arrest
+aspiration pneumonia
+bacteremia
+cardiac arrest
+cardiogenic shock
+cellulitis
+change in mental status
+cholangitis
+cholecystitis
+colitis
+dehydration
+diabetic ketoacidosis
+diarrhea
+diverticulitis
+dyspnea
+elevated  lfts
+elevated creatinine
+empyema
+encephalopathy
+endocarditis
+epidural abscess
+failure to thrive
+febrile neutropenia
+fever
+fib arrest
+hepatic encephalopathy
+hepatic failure
+hepatitis
+hyperglycemia
+hypoglycemia
+hypotension
+hypotensive
+hypothermia
+hypoxia
+infected graft
+infection
+infection
+influenza
+liver failure
+meningitis
+mental status change
+mental status changes
+methicillin resistant staph aureus
+nausea
+neutropenia
+osteomyelitis
+pancreatitis
+pancytopenia
+pea arrest
+pna
+pneumonia
+post arrest
+post op infection
+pyelonephritis
+r/o sepsis
+renal failure
+resp failure
+respiratory arrest
+respiratory distress
+respiratory failure
+sepsis
+septic knee
+septic shock
+shock
+shortness of breath
+sob
+spontaneous bacterial peritonitis
+tachycardia
+thrombocytopenia
+unresponsive
+urinary tract infection
+urosepsis
+uti
+vomiting
+weakness
+wound infection
