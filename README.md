@@ -7,9 +7,12 @@ A repository of reusable code modules for implementation in ICU databases such a
 Packaged as a R `devtools` packages so that installation is as easy as:
 ```
 install.packages("devtools")
-devtools::install_github("vincentmajor/MIMIC-ICU-filter-modules")
+devtools::install_github("vincentmajor/mimicfilters")
 library(mimicfilters)
 ```
+
+## Current Version
+Version: 0.0.0.9000 (November 15th 2016 release)
 
 ## Example
 ```
