@@ -8,11 +8,11 @@ temp_df = data.frame(id = c(1,2,3),
                               "blah, blah history of present illness: obesity, hypertension, HF etc blah: test"))
 exclusion = c('etoh', 'smok')
 
-test_that("extract_pastmedicalhistory_string", {
+test_that("extract_pmh_string", {
 
-  expect_equal(length(extract_pastmedicalhistory_string(temp_str)), 1)
-  expect_true(nchar(extract_pastmedicalhistory_string(temp_str)) <= nchar(temp_str))
-  expect_equal(extract_pastmedicalhistory_string(temp_str), "Past medical history: pt history of smoking related emphysema. Social h")
+  expect_equal(length(extract_pmh_string(temp_str)), 1)
+  expect_true(nchar(extract_pmh_string(temp_str)) <= nchar(temp_str))
+  expect_equal(extract_pmh_string(temp_str), "Past medical history: pt history of smoking related emphysema. Social h")
 })
 
 test_that("extract_pmhflag_string", {
@@ -46,15 +46,15 @@ test_that("extract_pmhflag_df_for_hf", {
   expect_equal(extract_pmhflag_df_for_hf(temp_df, 'text')$pmhflag, list(FALSE, FALSE, TRUE))
 })
 
-temp_str = "blah past medical history: smoking related emphysema. blah: test"
-extract_pastmedicalhistory_string(temp_str)
-extract_pmhflag_string(temp_str, 'smok') # TRUE
-extract_pmhflag_string(temp_str, 'etoh') # FALSE
-
-temp_df = data.frame(id = c(1,2,3),
-  text = c("blah\nPast medical history: smoking related emphysema. blah: test",
-  "blah PRIOR MEDICAL HISTORY: excessive etoh. blah: test",
-  "blah history of present illness: obesity, hypertension, HF etc blah: test"))
-
-extract_pmhflag_df(temp_df, 'text', c('smok', 'etoh'))
-extract_pmhflag_df_for_hf(temp_df, 'text')
+# temp_str = "blah past medical history: smoking related emphysema. blah: test"
+# extract_pastmedicalhistory_string(temp_str)
+# extract_pmhflag_string(temp_str, 'smok') # TRUE
+# extract_pmhflag_string(temp_str, 'etoh') # FALSE
+#
+# temp_df = data.frame(id = c(1,2,3),
+#   text = c("blah\nPast medical history: smoking related emphysema. blah: test",
+#   "blah PRIOR MEDICAL HISTORY: excessive etoh. blah: test",
+#   "blah history of present illness: obesity, hypertension, HF etc blah: test"))
+#
+# extract_pmhflag_df(temp_df, 'text', c('smok', 'etoh'))
+# extract_pmhflag_df_for_hf(temp_df, 'text')

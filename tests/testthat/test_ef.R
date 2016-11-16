@@ -63,13 +63,14 @@ test_that("ef_detect_coerce_string", {
 
 })
 
-temp_list = list('EF 20-25 %', 'EF=20%','LVEF \n\n\n > 35%', 'EF = 35 - 50%',
-                 'EF<35% blah blah EF < 35%', ' TEE EF>55%', 'LVEF = 5%',
-                 ' LEFT blah 2%. \n blah LVEF = 9%', 'LEFT blah blah blah blah 50%',
-                 'blah 5% blah blah EF = 70%')
-expect_equal(lapply(temp_list, extract_ejectionfraction_from_string), list(c(20, 25), 20, 35, c(35, 50), c(35,35), 55, 5, c(2, 9), NA, 70))
-
-temp_str = "severely depressed left ventricular systolic function"
-extract_ejectionfraction_from_string(temp_str)
-echo_list = list( "LVEF > 55%", "LVEF = 20 - 30%")
-lapply(echo_list, extract_ejectionfraction_from_string)
+## For the usage example
+# temp_list = list('EF 20-25 %', 'EF=20%','LVEF \n\n\n > 35%', 'EF = 35 - 50%',
+#                  'EF<35% blah blah EF < 35%', ' TEE EF>55%', 'LVEF = 5%',
+#                  ' LEFT blah 2%. \n blah LVEF = 9%', 'LEFT blah blah blah blah 50%',
+#                  'blah 5% blah blah EF = 70%')
+# expect_equal(lapply(temp_list, extract_ejectionfraction_from_string), list(c(20, 25), 20, 35, c(35, 50), c(35,35), 55, 5, c(2, 9), NA, 70))
+#
+# temp_str = "severely depressed left ventricular systolic function"
+# extract_ejectionfraction_from_string(temp_str)
+# echo_list = list( "LVEF > 55%", "LVEF = 20 - 30%")
+# lapply(echo_list, extract_ejectionfraction_from_string)

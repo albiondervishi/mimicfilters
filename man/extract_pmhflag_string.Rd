@@ -5,7 +5,7 @@
 \alias{extract_pmhflag_df_for_hf}
 \alias{extract_pmhflag_string}
 \alias{extract_pmhflag_string_for_hf}
-\title{Filter a patient based on their admission diagnosis.}
+\title{#' Filter a patient based on their admission diagnosis.}
 \usage{
 extract_pmhflag_string(temp_str, exclusion)
 
@@ -28,7 +28,8 @@ extract_pmhflag_df_for_hf(temp_df, text_column)
 A vector of logical values describing membership to exclusion
 }
 \description{
-The input must be a single string. The string will be pushed to lowercase.
+The input can either be a single string or a data.frame in which case the
+generic is mapped through each row. The string will be pushed to lowercase.
 The string will be searched for past medical history, or history of present
 illness. Each substring will be compared against a list of exclusion
 critera which if present will be marked as TRUE.
@@ -42,19 +43,20 @@ critera which if present will be marked as TRUE.
 \item \code{extract_pmhflag_df_for_hf}: Apply to data.frame with provided list of heart failure terms
 }}
 \examples{
+# create some examples
 temp_str = "blah past medical history: smoking related emphysema. blah: test"
-extract_pastmedicalhistory_string(temp_str)
+extract_pmh_string(temp_str)
 extract_pmhflag_string(temp_str, 'smok') # TRUE
 extract_pmhflag_string(temp_str, 'etoh') # FALSE
 
+# data.frame case
 temp_df = data.frame(id = c(1,2,3),
   text = c("blah\\nPast medical history: smoking related emphysema. blah: test",
   "blah PRIOR MEDICAL HISTORY: excessive etoh. blah: test",
   "blah history of present illness: obesity, hypertension, HF etc blah: test"))
-
-extract_pmhflag_df(temp_df, 'text', c('smok', 'etoh'))
-extract_pmhflag_df_for_hf(temp_df, 'text')
-
-
+# mapping
+sapply(temp_df$text, function(x) extract_pmhflag_string(x, c('smok', 'etoh')))
+# direct
+#extract_pmhflag_df(temp_df, 'text', c('smok', 'etoh'))
 }
 

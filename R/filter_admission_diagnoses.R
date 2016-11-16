@@ -67,7 +67,10 @@ inc_or_not_exc = function(temp, inclusion, exclusion){
 #'        'hemorrhage', 'intracranial hemorrhage'))
 #' # call the functions
 #' filter_admissiondiagnosis_string(temp_str, inclusion, exclusion)
-#' filter_admissiondiagnosis_df(temp_str, 'diagnosis', inclusion, exclusion)
+#' # mapping
+#' sapply(temp_df$diagnosis, function(x) filter_admissiondiagnosis_string(x, inclusion, exclusion))
+#' # direct
+#' # filter_admissiondiagnosis_df(temp_df, 'diagnosis', inclusion, exclusion)
 #'
 #' @export
 filter_admissiondiagnosis_string = function(temp_str, inclusion, exclusion = NULL){
@@ -164,7 +167,6 @@ filter_admissiondiagnosis_string_for_sepsis = function(temp_str){
   return(output)
 
 }
-
 
 #' @describeIn filter_admissiondiagnosis_string Apply to data.frame of admission diagnoses using predefined criteria
 filter_admissiondiagnosis_df_for_sepsis = function(temp_df, diagnosis_column){

@@ -59,7 +59,10 @@ temp_df = data.frame(HADM_ID = c('1', '2', '3', '4'),
        'hemorrhage', 'intracranial hemorrhage'))
 # call the functions
 filter_admissiondiagnosis_string(temp_str, inclusion, exclusion)
-filter_admissiondiagnosis_df(temp_str, 'diagnosis', inclusion, exclusion)
+# mapping
+sapply(temp_df$diagnosis, function(x) filter_admissiondiagnosis_string(x, inclusion, exclusion))
+# direct
+# filter_admissiondiagnosis_df(temp_df, 'diagnosis', inclusion, exclusion)
 
 }
 

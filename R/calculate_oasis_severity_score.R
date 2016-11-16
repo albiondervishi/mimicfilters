@@ -11,8 +11,7 @@
 # Output is a data.frame of OASIS parameter values, min, max and median that can then be redirected into e_chart_parameters_to_oasis_scores
 
 
-e_CHARTEVENTS_OASIS_extraction = function(CHARTEVENTS, variable, ICUIN)
-{
+e_CHARTEVENTS_OASIS_extraction = function(CHARTEVENTS, variable, ICUIN){
   output = {}
   if(variable == 'GCS')
   {
@@ -247,8 +246,7 @@ e_CHARTEVENTS_OASIS_extraction = function(CHARTEVENTS, variable, ICUIN)
 # Output is a table of scores based on the thresholds from the Johnson 2013 paper.
 
 
-e_chart_parameters_to_oasis_scores = function(OASIS_table)
-{
+e_chart_parameters_to_oasis_scores = function(OASIS_table){
   OASIS_scores = data.frame(HADM_ID = OASIS_table$HADM_ID)
   # Tin - time before ICU - remembering to convert to hours!
   OASIS_scores$Tin = bin_by_thresholds(OASIS_table$Tin*24, c(0.17,4.95,24.01,311.81), c(5,3,0,2,1))
