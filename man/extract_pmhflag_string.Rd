@@ -5,7 +5,7 @@
 \alias{extract_pmhflag_df_for_hf}
 \alias{extract_pmhflag_string}
 \alias{extract_pmhflag_string_for_hf}
-\title{#' Filter a patient based on their admission diagnosis.}
+\title{Filter a patient based on their admission diagnosis.}
 \usage{
 extract_pmhflag_string(temp_str, exclusion)
 

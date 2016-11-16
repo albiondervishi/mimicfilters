@@ -10,8 +10,20 @@
 
 # Output is a data.frame of OASIS parameter values, min, max and median that can then be redirected into e_chart_parameters_to_oasis_scores
 
-
-e_CHARTEVENTS_OASIS_extraction = function(CHARTEVENTS, variable, ICUIN){
+#' Extract the OASIS components from chartevents table.
+#'
+#' Requires a subset of the chartevents table as a data.frame as well as a
+#' string indicating which variable to look for and the icuin table as a
+#' data.frame to identify the time of ICU admission.
+#'
+#' @param CHARTEVENTS A data.frame containing chartevents for the patient
+#' @param variable A string containing the OASIS parameter to search for.
+#' @param ICUIN A data.frame subset of the icuin table containing patient
+#' IDs and ICU admission times.
+#' @return A vector of the patient ID, minimum, median and maximum variable value
+#'
+#' @export
+extract_oasis_from_chartevents = function(CHARTEVENTS, variable, ICUIN){
   output = {}
   if(variable == 'GCS')
   {
@@ -245,8 +257,15 @@ e_CHARTEVENTS_OASIS_extraction = function(CHARTEVENTS, variable, ICUIN){
 
 # Output is a table of scores based on the thresholds from the Johnson 2013 paper.
 
-
-e_chart_parameters_to_oasis_scores = function(OASIS_table){
+#' Calculate the OASIS score from the chartevents components.
+#'
+#' Requires a data.frame of all the OASIS component's extreme chartevents.
+#'
+#' @param OASIS_table A data.frame containing OASIS extreme chartevents for the patient
+#' @return A data.frame of the component scores and the final, sum score
+#'
+#' @export
+calculate_oasis_severity_score = function(OASIS_table){
   OASIS_scores = data.frame(HADM_ID = OASIS_table$HADM_ID)
   # Tin - time before ICU - remembering to convert to hours!
   OASIS_scores$Tin = bin_by_thresholds(OASIS_table$Tin*24, c(0.17,4.95,24.01,311.81), c(5,3,0,2,1))

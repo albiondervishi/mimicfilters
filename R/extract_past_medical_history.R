@@ -67,7 +67,7 @@ extract_pmh_string = function(temp_str){
   return(output)
 }
 
-#' #' Filter a patient based on their admission diagnosis.
+#' Filter a patient based on their admission diagnosis.
 #'
 #' The input can either be a single string or a data.frame in which case the
 #' generic is mapped through each row. The string will be pushed to lowercase.
