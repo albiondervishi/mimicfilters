@@ -8,6 +8,19 @@ Packaged as a R `devtools` packages so that installation is as easy as:
 ```
 install.packages("devtools")
 devtools::install_github("vincentmajor/MIMIC-ICU-filter-modules")
+library(mimicfilters)
+```
+
+## Example
+```
+# With dplyr
+data = data.frame(id = c(1, 2, 3, 4, 5, 6),
+  ICD9 = c('123.45', '234.56', '345.67', '456.78','567.89', '678.90'))
+dplyr::filter(data, filter_icd9_by_codes(ICD9, c('123', '345', '567')))
+
+# Without dplyr
+mask = filter_icd9_by_codes(data$ICD9, c('123', '345', '567'))
+data.filtered = data[mask,]
 ```
 
 ## Citations
