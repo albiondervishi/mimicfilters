@@ -1,7 +1,7 @@
 # MIMIC-ICU-filter-modules
 A repository of reusable code modules for implementation in ICU databases such as MIMIC-III. 
 
-[![Build Status](https://travis-ci.org/vincentmajor/MIMIC-ICU-filter-modules.svg?branch=master)](https://travis-ci.org/vincentmajor/MIMIC-ICU-filter-modules)
+[![Build Status](https://travis-ci.org/vincentmajor/mimicfilters.svg?branch=master)](https://travis-ci.org/vincentmajor/mimicfilters)
 
 ## Installation
 Packaged as a R `devtools` packages so that installation is as easy as:
